@@ -16,21 +16,32 @@ export default function Home() {
   const [turns, setTurns] = useState(0);
   const [choiceOne, setChoiceOne] = useState(null);
   const [choiceTwo, setChoiceTwo] = useState(null);
+  const [disabled, setDisabled] = useState(false);
 
   //const data2 = await fetch('https://api.storyblok.com/v2/cdn/stories/rings?version=draft&token=OQ09pa2LLqe7rgabggVtmQtt&cv=1720014571')
 
   // .then((response)=>response.json())
+
   useEffect(() => {
     if (choiceOne && choiceTwo) {
-      if (choiceOne === choiceTwo) {
-        console.log("its a match!!!!");
+      setDisabled(true);
+      if (choiceOne.imgSrc === choiceTwo.imgSrc) {
+        setCards((prevCards) => {
+          return prevCards.map((card) => {
+            if (card.imgSrc === choiceOne.imgSrc) {
+              return { ...card, matched: true };
+            } else {
+              return card;
+            }
+          });
+        });
         resetTurn();
       } else {
-        console.log("ohhh noooo");
-        resetTurn();
+        setTimeout(() => resetTurn(), 1000);
       }
     }
   }, [choiceOne, choiceTwo]);
+  console.log(cards);
 
   const { data, error, isLoading } = useSWR(
     "https://api.storyblok.com/v2/cdn/stories/rings?version=draft&token=OQ09pa2LLqe7rgabggVtmQtt&cv=1720014571",
@@ -42,19 +53,35 @@ export default function Home() {
   const img = data.story.content.body[0].columns[0].image;
   const arrayS = img.map((item) => item.filename);
 
+  const arraysMatched = arrayS.map((imgSrc, index) => ({
+    imgSrc,
+    matched: false,
+  }));
+
+  const cardArray = [...arrayS, ...arrayS];
+  const cardArray2 = cardArray.map((imgSrc, index) => ({
+    imgSrc,
+    matched: false,
+    index,
+  }));
   const shuffleCards = () => {
-    const cardsArray = [...arrayS, ...arrayS];
-    const shuffledCards = cardsArray.sort(() => 0.5 - Math.random());
-    setCards(shuffledCards);
+    const shuffledDouble = cardArray2.sort(() => 0.5 - Math.random());
+    setChoiceOne(null);
+    setChoiceTwo(null);
+    setCards(shuffledDouble);
+    setTurns(0);
   };
+
   const handleChoice = (card) => {
     choiceOne ? setChoiceTwo(card) : setChoiceOne(card);
+    console.log(card);
   };
 
   const resetTurn = () => {
     setChoiceOne(null);
     setChoiceTwo(null);
     setTurns((prevTurns) => prevTurns + 1);
+    setDisabled(false);
   };
 
   return (
@@ -64,9 +91,16 @@ export default function Home() {
       {data.story.content.body[0].columns[0].title}
       <div className="card-grid">
         {cards.map((card) => (
-          <SingleCard key={card.id} card={card} handleChoice={handleChoice} />
+          <SingleCard
+            key={card.index}
+            card={card}
+            handleChoice={handleChoice}
+            flipped={card === choiceOne || card === choiceTwo || card.matched}
+            disabled={disabled}
+          />
         ))}
       </div>
+      <p>Turns: {turns}</p>
     </main>
   );
 }
