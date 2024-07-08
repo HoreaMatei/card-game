@@ -1,0 +1,11 @@
+.card {
+  position: relative;
+  border-radius: 6px;
+}
+
+.back {
+  width: 100%;
+  display: block;
+  border: 2px solid white;
+  border-radius: 6px;
+}
