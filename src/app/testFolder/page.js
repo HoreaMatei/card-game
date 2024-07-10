@@ -3,7 +3,7 @@
 import React from "react";
 import { Button } from "@nextui-org/react";
 import useSWR from "swr";
-
+import Link from "next/link";
 import react, { useState, useRef } from "react";
 
 export const fetcher = (url) => fetch(url).then((res) => res.json());
@@ -21,8 +21,13 @@ function Page() {
     fetcher
   );
 
-  function handleClick(data) {
-    setShouldFetch(true);
+  function handleClick() {
+    if (document.getElementById("input").value == "") {
+      setShouldFetch(false);
+    } else {
+      setShouldFetch(true);
+    }
+
     setInputValue(document.getElementById("input").value);
   }
 
@@ -49,18 +54,32 @@ function Page() {
         item.title.toLowerCase().includes(inputValue)
       ) ? (
         <div>
-          {data.story.content.body[0].columns.map((item) => (
+          {data.story.content.body[0].columns.map((item, index) => (
             <div>
               {" "}
-              {item.title.toLowerCase().includes(inputValue)
-                ? item.title
-                : null}{" "}
+              {item.title.toLowerCase().includes(inputValue) ? (
+                <Link
+                  href={{
+                    pathname: `/${item.title}`,
+                    query: {
+                      name: data.story.content.body[0].columns[index].title,
+
+                      dataa: data.story.content.body[0].columns[
+                        index
+                      ].image.map((item) => item.filename),
+                    },
+                  }}
+                  id={index}
+                  replace
+                >
+                  {" "}
+                  {item.title}
+                </Link>
+              ) : null}{" "}
             </div>
           ))}
         </div>
-      ) : (
-        "ok"
-      )}
+      ) : null}
     </div>
   );
 }
