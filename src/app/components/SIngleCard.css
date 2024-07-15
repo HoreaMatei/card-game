@@ -4,6 +4,7 @@
   transition: transform 0.8s;
   width: 90%;
   margin: auto;
+  cursor: pointer;
 }
 
 .card .front {

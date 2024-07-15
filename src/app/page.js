@@ -1,106 +1,99 @@
 "use client";
-import "./globals.css";
 
-import Image from "next/image";
-import styles from "./page.module.css";
-import useSWR from "swr";
-
+import React from "react";
 import { Button } from "@nextui-org/react";
-import { useEffect, useState } from "react";
-import SingleCard from "./components/SingleCard";
+import useSWR from "swr";
+import Link from "next/link";
+import react, { useState, useRef } from "react";
 
-const fetcher = (url) => fetch(url).then((res) => res.json());
+export const fetcher = (url) => fetch(url).then((res) => res.json());
 
-export default function Home() {
-  const [cards, setCards] = useState([]);
-  const [turns, setTurns] = useState(0);
-  const [choiceOne, setChoiceOne] = useState(null);
-  const [choiceTwo, setChoiceTwo] = useState(null);
-  const [disabled, setDisabled] = useState(false);
+function Page() {
+  const heroRef = useRef();
 
-  //const data2 = await fetch('https://api.storyblok.com/v2/cdn/stories/rings?version=draft&token=OQ09pa2LLqe7rgabggVtmQtt&cv=1720014571')
+  const [inputValue, setInputValue] = useState("");
+  const [shouldFetch, setShouldFetch] = useState(false);
 
-  // .then((response)=>response.json())
-
-  useEffect(() => {
-    if (choiceOne && choiceTwo) {
-      setDisabled(true);
-      if (choiceOne.imgSrc === choiceTwo.imgSrc) {
-        setCards((prevCards) => {
-          return prevCards.map((card) => {
-            if (card.imgSrc === choiceOne.imgSrc) {
-              return { ...card, matched: true };
-            } else {
-              return card;
-            }
-          });
-        });
-        resetTurn();
-      } else {
-        setTimeout(() => resetTurn(), 1000);
-      }
-    }
-  }, [choiceOne, choiceTwo]);
-  console.log(cards);
-
-  const { data, error, isLoading } = useSWR(
-    "https://api.storyblok.com/v2/cdn/stories/rings?version=draft&token=OQ09pa2LLqe7rgabggVtmQtt&cv=1720014571",
+  const { data } = useSWR(
+    shouldFetch
+      ? "https://api.storyblok.com/v2/cdn/stories/rings?version=draft&token=OQ09pa2LLqe7rgabggVtmQtt&cv=1720014571"
+      : null,
     fetcher
   );
-  if (error) return <div>failed to load</div>;
-  if (isLoading) return <div>loading...</div>;
 
-  const img = data.story.content.body[0].columns[0].image;
-  const arrayS = img.map((item) => item.filename);
+  function handleClick() {
+    if (document.getElementById("input").value == "") {
+      setShouldFetch(false);
+    } else {
+      setShouldFetch(true);
+    }
 
-  const arraysMatched = arrayS.map((imgSrc, index) => ({
-    imgSrc,
-    matched: false,
-  }));
+    setInputValue(document.getElementById("input").value);
+  }
 
-  const cardArray = [...arrayS, ...arrayS];
-  const cardArray2 = cardArray.map((imgSrc, index) => ({
-    imgSrc,
-    matched: false,
-    index,
-  }));
-  const shuffleCards = () => {
-    const shuffledDouble = cardArray2.sort(() => 0.5 - Math.random());
-    setChoiceOne(null);
-    setChoiceTwo(null);
-    setCards(shuffledDouble);
-    setTurns(0);
-  };
-
-  const handleChoice = (card) => {
-    choiceOne ? setChoiceTwo(card) : setChoiceOne(card);
-    console.log(card);
-  };
-
-  const resetTurn = () => {
-    setChoiceOne(null);
-    setChoiceTwo(null);
-    setTurns((prevTurns) => prevTurns + 1);
-    setDisabled(false);
-  };
-
+  function enterPressed(e) {
+    if (e.key === "Enter") {
+      handleClick();
+    }
+  }
   return (
-    <main className={styles.main}>
-      <Button onClick={shuffleCards}>shuffle </Button>
+    <div className="page">
+      <video autoPlay muted loop className="videoBg">
+        <source src="./background2.mp4" type="video/mp4" />
+      </video>
+      <div className="content">
+        <div className="searchDiv">
+          <input
+            autocomplete="off"
+            type="search"
+            placeholder="search for a character..."
+            id="input"
+            onKeyDown={enterPressed}
+            required
+          ></input>
 
-      {data.story.content.body[0].columns[0].title}
-      <div className="card-grid">
-        {cards.map((card) => (
-          <SingleCard
-            key={card.index}
-            card={card}
-            handleChoice={handleChoice}
-            flipped={card === choiceOne || card === choiceTwo || card.matched}
-            disabled={disabled}
-          />
-        ))}
+          <Button onClick={handleClick} className="searchBtn">
+            Search
+          </Button>
+        </div>
+
+        {data &&
+        data.story.content.body[0].columns.filter((item) =>
+          item.title.toLowerCase().includes(inputValue)
+        ) ? (
+          <div className="link">
+            {data.story.content.body[0].columns.map((item, index) => (
+              <div>
+                {" "}
+                {item.title.toLowerCase().includes(inputValue) ? (
+                  <div className="linklink">
+                    <Link
+                      className="linklink"
+                      href={{
+                        pathname: `/pop`,
+                        query: {
+                          name: data.story.content.body[0].columns[index].title,
+                          data: data,
+                          dataa: data.story.content.body[0].columns[
+                            index
+                          ].image.map((item) => item.filename),
+                          img: data.story.content.body[0].columns[0].image,
+                        },
+                      }}
+                      id={index}
+                    >
+                      {" "}
+                      {item.title}
+                    </Link>
+                  </div>
+                ) : null}{" "}
+              </div>
+            ))}
+          </div>
+        ) : null}
       </div>
-      <p>Turns: {turns}</p>
-    </main>
+    </div>
   );
 }
+
+export default Page;

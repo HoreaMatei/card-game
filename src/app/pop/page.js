@@ -1,9 +1,10 @@
 "use client";
 import React from "react";
-import Image from "next/image";
+
 import { Button } from "@nextui-org/react";
 
 import "@/app/globals.css";
+import "./pop.css";
 
 import { useEffect, useState } from "react";
 import SingleCard from "@/app/components/SingleCard";
