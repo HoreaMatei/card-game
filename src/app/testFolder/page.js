@@ -60,17 +60,17 @@ function Page() {
               {item.title.toLowerCase().includes(inputValue) ? (
                 <Link
                   href={{
-                    pathname: `/${item.title}`,
+                    pathname: `/pop`,
                     query: {
                       name: data.story.content.body[0].columns[index].title,
-
+                      data: data,
                       dataa: data.story.content.body[0].columns[
                         index
                       ].image.map((item) => item.filename),
+                      img: data.story.content.body[0].columns[0].image,
                     },
                   }}
                   id={index}
-                  replace
                 >
                   {" "}
                   {item.title}

@@ -11,16 +11,15 @@ const SingleCard = ({ card, handleChoice, flipped, disabled }) => {
 
   return (
     <div className="card">
-      <div className={flipped ? "flipped " : ""}>
+      <div className={flipped ? "flipped " : ""} onClick={handleClick}>
         <Image
           height={250}
           width={250}
           className="front"
-          src={card.imgSrc}
+          src={card.imgSrc.imgSrc}
           alt="card front"
         />
         <Image
-          onClick={handleClick}
           height={250}
           width={250}
           className="back"

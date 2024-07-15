@@ -1,6 +1,9 @@
 .card {
   position: relative;
   border-radius: 6px;
+  transition: transform 0.8s;
+  width: 90%;
+  margin: auto;
 }
 
 .card .front {
@@ -21,5 +24,6 @@
 
 .flipped .back {
   transform: rotateY(90deg);
-  transition-delay: 0;
+
+  transition-delay: 0s;
 }

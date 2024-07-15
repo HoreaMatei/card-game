@@ -106,12 +106,28 @@ a {
   }
 }
  */
-
 .card-grid {
-  margin-top: 40px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  gap: 20px;
+  gap: 10px;
   text-align: center;
-  width: 80%;
+  width: 58%;
+  margin: auto;
+  margin-top: 40px;
+}
+
+.shuffleBtn {
+  text-align: center;
+  width: 100px;
+  margin: auto;
+}
+
+.characterAndBtn {
+  width: 150px;
+  margin: auto;
+  text-align: center;
+}
+
+.main {
+  text-align: center;
 }
