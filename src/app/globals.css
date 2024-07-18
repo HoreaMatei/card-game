@@ -133,11 +133,12 @@ a {
   color: white;
   position: fixed;
   width: 900px;
-  font-size: 40px;
+  font-size: 55px;
+  font-weight: 700;
   box-shadow: 0px 10px -14px 14px #fff;
-  border: 1px solid red;
 
-  top: 0;
+  top: 10%;
+  text-align: center;
 
   left: 50%;
   transform: translate(-50%, -50%);
@@ -182,7 +183,7 @@ a {
 #input,
 .searchBtn {
   vertical-align: middle;
-  background: rgba(255, 255, 255, 0.116);
+
   height: 60px;
   border: 2px solid rgba(58, 53, 53, 0.342);
 
@@ -256,8 +257,9 @@ input::-webkit-search-cancel-button {
   text-align: center;
   border-radius: 40px;
   margin: 20px;
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(10px);
   background: rgba(255, 255, 255, 0.116);
+  background: rgba(255, 255, 255, 0.267);
   color: white;
 }
 
@@ -267,12 +269,12 @@ input::-webkit-search-cancel-button {
 }
 
 .linksContainer {
-  position: fixed;
   top: 59%;
   color: white;
-
+  position: relative;
   box-shadow: inset 0 0 2000px rgba(161, 128, 128, 0.219);
-  width: 70%;
+
+  margin-left: 100px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -280,14 +282,11 @@ input::-webkit-search-cancel-button {
   backdrop-filter: blur(10px);
   border-radius: 40px;
   margin: auto;
-  left: 50%-50%;
-}
+  padding-left: -50px;
+  width: fit-content;
+  max-width: 70%;
 
-.choose {
-  color: white;
-  position: fixed;
-  top: 42%;
-  font-size: 30px;
+  height: 50vw;
 }
 
 .noDec {
@@ -298,5 +297,5 @@ input::-webkit-search-cancel-button {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: rgb(223, 221, 221);
+  color: white;
 }
