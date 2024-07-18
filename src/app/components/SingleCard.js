@@ -6,24 +6,29 @@ const SingleCard = ({ card, handleChoice, flipped, disabled }) => {
   const handleClick = () => {
     if (!disabled) {
       handleChoice(card);
+      start();
     }
+  };
+  let audio = new Audio("./flip2.mp3");
+  const start = () => {
+    audio.play();
   };
 
   return (
     <div className="card">
       <div className={flipped ? "flipped " : ""} onClick={handleClick}>
         <Image
-          height={250}
-          width={250}
+          height={220}
+          width={220}
           className="front"
           src={card.imgSrc.imgSrc}
           alt="card front"
         />
         <Image
-          height={250}
-          width={250}
+          height={220}
+          width={220}
           className="back"
-          src="/lotr.avif"
+          src="/ring6.jpg"
           alt="card back"
         />
       </div>

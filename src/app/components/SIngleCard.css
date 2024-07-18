@@ -1,16 +1,19 @@
 .card {
   position: relative;
-  border-radius: 6px;
+  border-radius: 10px;
   transition: transform 0.8s;
-  width: 90%;
+  width: 100%;
   margin: auto;
+  box-shadow: 1px 1px 5px #ffffff inset;
   cursor: pointer;
 }
 
 .card .front {
+  border-radius: 10px;
   transform: rotateY(90deg);
   transition: all ease-in 0.2s;
   position: absolute;
+  box-shadow: 1px 1px 5px #fffcfc inset;
 }
 
 .flipped .front {
@@ -19,8 +22,10 @@
 }
 
 .card .back {
+  border-radius: 10px;
   transition: all ease-in 0.2s;
   transition-delay: 0.2s;
+  box-shadow: 1px 1px 5px #ffffff inset;
 }
 
 .flipped .back {

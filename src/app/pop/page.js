@@ -15,11 +15,17 @@ export default function Home({ searchParams }) {
   const [choiceOne, setChoiceOne] = useState(null);
   const [choiceTwo, setChoiceTwo] = useState(null);
   const [disabled, setDisabled] = useState(false);
+  useEffect(() => {
+    shuffleCards();
+  }, []);
 
   useEffect(() => {
     if (choiceOne && choiceTwo) {
       setDisabled(true);
-      if (choiceOne.imgSrc === choiceTwo.imgSrc) {
+      if (
+        choiceOne.imgSrc === choiceTwo.imgSrc &&
+        choiceOne.index != choiceTwo.index
+      ) {
         setCards((prevCards) => {
           return prevCards.map((card) => {
             if (card.imgSrc === choiceOne.imgSrc) {
@@ -50,6 +56,7 @@ export default function Home({ searchParams }) {
     matched: false,
     index,
   }));
+
   const shuffleCards = () => {
     const shuffledDouble = cardArray2.sort(() => 0.5 - Math.random());
     console.log(shuffledDouble);
@@ -72,7 +79,10 @@ export default function Home({ searchParams }) {
   };
 
   return (
-    <main className="main">
+    <main className="main2">
+      <video autoPlay loop muted className="videoBg2">
+        <source src="./7.mp4" type="video/mp4" />
+      </video>
       <div className="characterAndBtn">
         <div className="characterName">{searchParams.name}</div>
         <Button className="shuffleBtn" onClick={shuffleCards}>
@@ -91,7 +101,7 @@ export default function Home({ searchParams }) {
           />
         ))}
       </div>
-      <p>Turns: {turns}</p>
+      <p className="turns">Turns: {turns}</p>
     </main>
   );
 }

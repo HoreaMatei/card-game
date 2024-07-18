@@ -5,6 +5,7 @@ import { Button } from "@nextui-org/react";
 import useSWR from "swr";
 import Link from "next/link";
 import react, { useState, useRef } from "react";
+import Image from "next/image";
 
 export const fetcher = (url) => fetch(url).then((res) => res.json());
 
@@ -38,37 +39,46 @@ function Page() {
   }
   return (
     <div className="page">
-      <video autoPlay muted loop className="videoBg">
-        <source src="./background2.mp4" type="video/mp4" />
+      <video autoPlay loop muted className="videoBg">
+        <source src="./2.mp4" type="video/mp4" />
       </video>
       <div className="content">
-        <div className="searchDiv">
-          <input
-            autocomplete="off"
-            type="search"
-            placeholder="search for a character..."
-            id="input"
-            onKeyDown={enterPressed}
-            required
-          ></input>
+        <div className="subDiv">
+          <p className="title">Lord of The Rings inspired card matching game</p>
+          <div className="searchDiv">
+            <input
+              autocomplete="off"
+              type="search"
+              placeholder="search for a character..."
+              id="input"
+              onKeyDown={enterPressed}
+              required
+            ></input>
 
-          <Button onClick={handleClick} className="searchBtn">
-            Search
-          </Button>
+            <Button onClick={handleClick} className="searchBtn">
+              <Image
+                src="/search.png"
+                priority
+                width={30}
+                height={30}
+                alt="search"
+              />
+            </Button>
+          </div>
         </div>
 
         {data &&
         data.story.content.body[0].columns.filter((item) =>
           item.title.toLowerCase().includes(inputValue)
         ) ? (
-          <div className="link">
+          <div className="linksContainer">
             {data.story.content.body[0].columns.map((item, index) => (
               <div>
                 {" "}
                 {item.title.toLowerCase().includes(inputValue) ? (
-                  <div className="linklink">
+                  <div className="links">
                     <Link
-                      className="linklink"
+                      className="noDec"
                       href={{
                         pathname: `/pop`,
                         query: {
