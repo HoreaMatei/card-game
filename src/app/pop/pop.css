@@ -16,6 +16,8 @@
   backdrop-filter: blur(5px);
   border: none;
   margin: auto;
+  margin-top: 2rem;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .characterAndBtn {
   display: flex;
@@ -28,7 +30,9 @@
 }
 
 .characterName {
-  color: white;
+  color: rgb(219, 196, 196);
+  font-size: 2.5rem;
+  font-weight: 700;
 }
 .shuffleBtn:active {
   background: #a3a3a3;
@@ -59,10 +63,10 @@
   grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 5px;
   text-align: center;
-  width: 55%;
+  width: clamp(300px, 48vw, 52vw);
 
-  margin-top: 40px;
   margin: auto;
+  margin-top: -20px;
 }
 
 .main2 {
@@ -73,4 +77,19 @@
 
 .turns {
   color: white;
+}
+
+@media (max-width: 1200px) {
+  .card-grid {
+    width: 80%;
+  }
+  .characterAndBtn {
+    width: 50%;
+  }
+}
+
+@media (max-width: 400px) {
+  .shuffleBtn {
+    width: 80%;
+  }
 }

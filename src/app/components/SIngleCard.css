@@ -1,16 +1,16 @@
 .card {
-  position: relative;
-  border-radius: 10px;
+  border-radius: 16px;
   transition: transform 0.8s;
-  width: 230px;
+  width: 11.5vw;
   margin: auto;
 
   cursor: pointer;
 }
 
 .card .front {
-  width: 100%;
-  border-radius: 10px;
+  width: 11.5vw;
+
+  border-radius: 16px;
   transform: rotateY(90deg);
   transition: all ease-in 0.2s;
   position: absolute;
@@ -24,7 +24,7 @@
 
 .card .back {
   width: 100%;
-  border-radius: 10px;
+  border-radius: 16px;
   transition: all ease-in 0.2s;
   transition-delay: 0.2s;
   box-shadow: 1px 1px 5px #ffffff inset;
@@ -34,4 +34,14 @@
   transform: rotateY(90deg);
 
   transition-delay: 0s;
+}
+
+@media (max-width: 1200px) {
+  .card {
+    width: 18vw;
+  }
+
+  .card .front {
+    width: 18vw;
+  }
 }

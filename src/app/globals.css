@@ -113,35 +113,32 @@ a {
  */
 .page {
   width: 100%;
+  display: flex;
+  align-items: center;
 }
 
 .content {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   height: 100vh;
   width: 100%;
-  flex-wrap: wrap;
+  flex-direction: column;
+
+  display: flex;
 }
 
 .subDiv {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .title {
-  color: white;
-  position: fixed;
-  width: 900px;
-  font-size: 55px;
+  color: rgb(255, 255, 255);
+
+  width: clamp(250px, 80vw, 900px);
+  font-size: clamp(2rem, 3vw, 4rem);
   font-weight: 700;
-  box-shadow: 0px 10px -14px 14px #fff;
 
-  top: 10%;
   text-align: center;
-
-  left: 50%;
-  transform: translate(-50%, -50%);
 }
 
 .shuffleBtn {
@@ -170,14 +167,14 @@ a {
 
 .searchDiv {
   height: 61px;
-  vertical-align: middle;
-  position: fixed;
-  top: 40%;
   margin: auto;
   border-radius: 30px;
   backdrop-filter: blur(10px);
-  transform: translate(-50%, -50%);
+
   background: rgba(255, 255, 255, 0.425);
+  margin-top: 150px;
+  margin-bottom: 40px;
+  width: clamp(250px, 50vw, 700px);
 }
 
 #input,
@@ -215,7 +212,7 @@ input::-webkit-search-cancel-button {
   margin: 0;
   border-radius: 30px 0 0 30px;
   border-right: 0;
-  width: 700px;
+  width: calc(100% - 60px);
 }
 
 .searchBtn:focus {
@@ -234,6 +231,7 @@ input::-webkit-search-cancel-button {
   border-radius: 0 30px 30px 0;
   cursor: pointer;
   border-left: 0;
+  position: fixed;
   width: 60px;
   padding-top: 4px;
 }
@@ -261,6 +259,7 @@ input::-webkit-search-cancel-button {
   background: rgba(255, 255, 255, 0.116);
   background: rgba(255, 255, 255, 0.267);
   color: white;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .links:active {
@@ -269,12 +268,10 @@ input::-webkit-search-cancel-button {
 }
 
 .linksContainer {
-  top: 59%;
   color: white;
-  position: relative;
+
   box-shadow: inset 0 0 2000px rgba(161, 128, 128, 0.219);
 
-  margin-left: 100px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -282,11 +279,9 @@ input::-webkit-search-cancel-button {
   backdrop-filter: blur(10px);
   border-radius: 40px;
   margin: auto;
-  padding-left: -50px;
   width: fit-content;
   max-width: 70%;
-
-  height: 50vw;
+  margin: auto;
 }
 
 .noDec {
@@ -297,5 +292,15 @@ input::-webkit-search-cancel-button {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: white;
+  color: rgb(255, 255, 255);
+}
+
+@media (max-width: 800px) {
+  .linksContainer {
+    margin-top: 270px;
+  }
+
+  .title {
+    margin-bottom: -40px;
+  }
 }
