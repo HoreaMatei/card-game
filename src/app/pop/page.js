@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import Navbar from "../components/Navbar";
 
 import { Button } from "@nextui-org/react";
 
@@ -8,6 +9,7 @@ import "./pop.css";
 
 import { useEffect, useState } from "react";
 import SingleCard from "@/app/components/SingleCard";
+import { medieval } from "../page";
 
 export default function Home({ searchParams }) {
   const [cards, setCards] = useState([]);
@@ -41,7 +43,6 @@ export default function Home({ searchParams }) {
       }
     }
   }, [choiceOne, choiceTwo]);
-  console.log(cards);
 
   const data = searchParams.data;
 
@@ -50,16 +51,16 @@ export default function Home({ searchParams }) {
     matched: false,
   }));
 
-  const cardArray = [...arraysMatched, ...arraysMatched];
-  const cardArray2 = cardArray.map((imgSrc, index) => ({
-    imgSrc,
-    matched: false,
-    index,
-  }));
+  const cardArray2 = [...arraysMatched, ...arraysMatched].map(
+    (imgSrc, index) => ({
+      imgSrc,
+      matched: false,
+      index,
+    })
+  );
 
   const shuffleCards = () => {
     const shuffledDouble = cardArray2.sort(() => 0.5 - Math.random());
-    console.log(shuffledDouble);
     setChoiceOne(null);
     setChoiceTwo(null);
     setCards(shuffledDouble);
@@ -68,7 +69,6 @@ export default function Home({ searchParams }) {
 
   const handleChoice = (card) => {
     choiceOne ? setChoiceTwo(card) : setChoiceOne(card);
-    console.log(card);
   };
 
   const resetTurn = () => {
@@ -80,12 +80,16 @@ export default function Home({ searchParams }) {
 
   return (
     <main className="main2">
+      <Navbar />
       <video autoPlay loop muted className="videoBg2">
         <source src="./7.mp4" type="video/mp4" />
       </video>
       <div className="characterAndBtn">
         <div className="characterName">{searchParams.name}</div>
-        <Button className="shuffleBtn" onClick={shuffleCards}>
+        <Button
+          className={`shuffleBtn ${medieval.className}`}
+          onClick={shuffleCards}
+        >
           shuffle{" "}
         </Button>
       </div>

@@ -6,9 +6,10 @@ import useSWR from "swr";
 import Link from "next/link";
 import react, { useState, useRef } from "react";
 import Image from "next/image";
-
+import { MedievalSharp } from "next/font/google";
 export const fetcher = (url) => fetch(url).then((res) => res.json());
 
+export const medieval = MedievalSharp({ subsets: ["latin"], weight: "400" });
 function Page() {
   const heroRef = useRef();
 
@@ -44,7 +45,9 @@ function Page() {
       </video>
       <div className="content">
         <div className="subDiv">
-          <p className="title">Lord of The Rings inspired card matching game</p>
+          <p className={`title `}>
+            Lord of The Rings inspired card matching game
+          </p>
           <div className="searchDiv">
             <input
               autocomplete="off"
@@ -53,6 +56,7 @@ function Page() {
               id="input"
               onKeyDown={enterPressed}
               required
+              className={medieval.className}
             ></input>
 
             <Button onClick={handleClick} className="searchBtn">
