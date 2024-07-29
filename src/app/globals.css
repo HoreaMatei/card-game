@@ -137,6 +137,7 @@ a {
   width: clamp(250px, 80vw, 900px);
   font-size: clamp(2rem, 3vw, 4rem);
   font-weight: 700;
+  margin-top: 150px;
 
   text-align: center;
 }
@@ -172,7 +173,7 @@ a {
   backdrop-filter: blur(10px);
 
   background: rgba(255, 255, 255, 0.425);
-  margin-top: 100px;
+  margin-top: 150px;
   margin-bottom: 40px;
   width: clamp(250px, 50vw, 700px);
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -270,7 +271,6 @@ input::-webkit-search-cancel-button {
 
 .linksContainer {
   color: white;
-
   display: flex;
   flex-wrap: wrap;
   justify-content: center;

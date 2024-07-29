@@ -65,6 +65,7 @@
   gap: 5px;
   text-align: center;
   width: clamp(300px, 48vw, 52vw);
+  height: 65vh;
 
   margin: auto;
   margin-top: -20px;

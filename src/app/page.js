@@ -45,9 +45,8 @@ function Page() {
       </video>
       <div className="content">
         <div className="subDiv">
-          <p className={`title `}>
-            Lord of The Rings inspired card matching game
-          </p>
+          <p className={`title `}>Lord of The Rings card game</p>
+
           <div className="searchDiv">
             <input
               autocomplete="off"
