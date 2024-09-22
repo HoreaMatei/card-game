@@ -71,7 +71,7 @@ function Page() {
         ) ? (
           <div className="linksContainer">
             {data.story.content.body[0].columns.map((item, index) => (
-              <div>
+              <div key={data.story.content.body[0].columns[index].title}>
                 {" "}
                 {item.title.toLowerCase().includes(inputValue) ? (
                   <div className="links">
