@@ -1,5 +1,5 @@
 import React from "react";
-import "./SingleCard.css";
+import "./SIngleCard.css";
 import Image from "next/image";
 
 const SingleCard = ({ card, handleChoice, flipped, disabled }) => {
