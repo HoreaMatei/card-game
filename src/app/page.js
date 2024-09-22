@@ -16,12 +16,7 @@ function Page() {
   const [inputValue, setInputValue] = useState("");
   const [shouldFetch, setShouldFetch] = useState(false);
 
-  const { data } = useSWR(
-    shouldFetch
-      ? "https://api.storyblok.com/v2/cdn/stories/rings?version=draft&token=OQ09pa2LLqe7rgabggVtmQtt&cv=1720014571"
-      : null,
-    fetcher
-  );
+  const { data } = useSWR(shouldFetch ? process.env.KEY : null, fetcher);
 
   function handleClick() {
     if (document.getElementById("input").value == "") {

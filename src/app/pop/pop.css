@@ -85,6 +85,7 @@
 @media (max-width: 1200px) {
   .card-grid {
     width: 80%;
+    gap: 1px;
   }
   .characterAndBtn {
     width: 50%;
@@ -94,5 +95,11 @@
 @media (max-width: 400px) {
   .shuffleBtn {
     width: 80%;
+    height: 50px;
+    font-size: 15px;
+  }
+
+  .characterAndBtn {
+    margin-top: 15px;
   }
 }

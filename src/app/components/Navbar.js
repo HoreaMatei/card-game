@@ -8,10 +8,6 @@ const Navbar = () => {
       <Link className="home" href={"/"}>
         Home
       </Link>
-      <div className="signLinks">
-        <p className="signIn">Sign in</p>
-        <p>Register</p>
-      </div>
     </div>
   );
 };
