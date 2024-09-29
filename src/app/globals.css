@@ -304,4 +304,8 @@ input::-webkit-search-cancel-button {
     margin-top: 40px;
     margin-bottom: -60px;
   }
+
+  ::placeholder {
+    font-size: 14px;
+  }
 }
