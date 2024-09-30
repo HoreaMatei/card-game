@@ -35,7 +35,14 @@ function Page() {
   }
   return (
     <div className="page">
-      <video autoPlay loop muted className="videoBg">
+      <video
+        playsinline
+        style="user-select: none;"
+        autoPlay
+        loop
+        muted
+        className="videoBg"
+      >
         <source src="./2.mp4" type="video/mp4" />
       </video>
       <div className="content">
