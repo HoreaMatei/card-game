@@ -175,6 +175,9 @@ video::-webkit-media-controls {
 video::-webkit-media-controls-start-playback-button {
   display: none !important;
 }
+video::-webkit-media-controls {
+  opacity: 0;
+}
 .searchDiv {
   height: 61px;
   margin: auto;
