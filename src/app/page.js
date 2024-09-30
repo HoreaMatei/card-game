@@ -35,7 +35,7 @@ function Page() {
   }
   return (
     <div className="page">
-      <video controls preload="none" autoPlay loop muted className="videoBg">
+      <video autoPlay loop muted className="videoBg">
         <source src="./2.mp4" type="video/mp4" />
       </video>
       <div className="content">
@@ -67,13 +67,13 @@ function Page() {
 
         {data &&
         data.story.content.body[0].columns.filter((item) =>
-          item.title.toLowerCase().includes(inputValue)
+          item.title.toLowerCase().includes(inputValue.toLowerCase())
         ) ? (
           <div className="linksContainer">
             {data.story.content.body[0].columns.map((item, index) => (
               <div key={data.story.content.body[0].columns[index].title}>
                 {" "}
-                {item.title.toLowerCase().includes(inputValue) ? (
+                {item.title.toLowerCase().includes(inputValue.toLowerCase()) ? (
                   <div className="links">
                     <Link
                       className="noDec"
