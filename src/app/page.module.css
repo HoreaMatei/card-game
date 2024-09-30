@@ -6,9 +6,7 @@
   padding: 6rem;
   min-height: 100vh;
 }
-video::-webkit-media-controls {
-  display: none;
-}
+
 
 .description {
   display: inherit;
@@ -133,6 +131,10 @@ video::-webkit-media-controls {
 @media (max-width: 700px) {
   .content {
     padding: 4rem;
+  }
+
+  video{
+
   }
 
   .grid {
