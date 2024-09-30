@@ -172,6 +172,10 @@ video::-webkit-media-controls {
   user-select: none;
 }
 
+*::-webkit-media-controls-start-playback-button {
+  display: none !important;
+  -webkit-appearance: none;
+}
 .searchDiv {
   height: 61px;
   margin: auto;
